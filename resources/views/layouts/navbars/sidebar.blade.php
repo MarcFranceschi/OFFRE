@@ -5,8 +5,8 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="https://creative-tim.com/" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+    <a href="" class="simple-text logo-normal">
+      {{ __('Bienvenue') }}
     </a>
   </div>
   <div class="sidebar-wrapper">
@@ -14,7 +14,7 @@
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
-            <p>{{ __('Dashboard') }}</p>
+            <p>{{ __('Tableau de bord') }}</p>
         </a>
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
@@ -29,13 +29,13 @@
             <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('profile.edit') }}">
                 <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
+                <span class="sidebar-normal">{{ __('Mon profil') }} </span>
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('user.index') }}">
                 <span class="sidebar-mini"> UM </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
+                <span class="sidebar-normal"> {{ __('Gérer les utilisateurs') }} </span>
               </a>
             </li>
           </ul>
@@ -44,24 +44,24 @@
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'offre-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#GestionOffre" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-          <p>{{ __('Gestion des offres') }}
+          <p>{{ __('Gestion offres') }}
             <b class="caret"></b>
           </p>
         </a>
         <div class="collapse show" id="GestionOffre">
           <ul class="nav">
           <li class="nav-item{{ $activePage == 'offre' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('offres') }}">
+        <a class="nav-link" href="{{ route('offres.index') }}">
           <i class="material-icons">content_paste</i>
-            <p>{{ __('Liste des offres') }}</p>
+            <p>{{ __('Gérer les offres') }}</p>
         </a>
       </li>
-            <li class="nav-item{{ $activePage == 'offres' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('create-offre') }}">
+          <!--  <li class="nav-item{{ $activePage == 'offres' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('offres.create') }}">
                 <span class="sidebar-mini"> UP </span>
                 <span class="sidebar-normal">{{ __('Créer une offre') }} </span>
               </a>
-            </li>
+            </li> -->
             
           </ul>
         </div>

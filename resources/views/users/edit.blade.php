@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('User Management')])
+@extends('layouts.app', ['activePage' => 'Modification d'un utilisateur', 'titlePage' => __('User Management')])
 
 @section('content')
   <div class="content">
@@ -43,7 +43,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-password">{{ __(' Password') }}</label>
+                  <label class="col-sm-2 col-form-label" for="input-password">{{ __(' Mot de passe') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" input type="password" name="password" id="input-password" placeholder="{{ __('Password') }}" />
@@ -54,7 +54,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirm Password') }}</label>
+                  <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirmation du ot de passe') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group">
                       <input class="form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="{{ __('Confirm Password') }}" />
@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                <button type="submit" class="btn btn-primary">{{ __('Sauvegarder') }}</button>
               </div>
             </div>
           </form>

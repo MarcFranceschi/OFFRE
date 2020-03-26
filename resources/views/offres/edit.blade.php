@@ -1,11 +1,11 @@
-@extends('layouts.app', ['activePage' => 'Modification d\'une offre', 'titlePage' => __('Modification d\'une offre')])
+@extends('layouts.app', ['activePage' => 'Modification d'une offre', 'titlePage' => __('Modification d\'une offre')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('update-offre', $offre) }}" autocomplete="off" class="form-horizontal">
+        <form method="post" action="{{ route('offres.update', $offre) }}" autocomplete="off" class="form-horizontal">
             @csrf
             @method('put')
 
@@ -17,7 +17,7 @@
               <div class="card-body ">
                 <div class="row">
                   <div class="col-md-12 text-right">
-                      <a href="{{ route('offres') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
+                      <a href="{{ route('offres.index') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
                   </div>
                 </div>
                 <div class="row">

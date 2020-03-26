@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'titlePage' => __('User Management')])
+@extends('layouts.app', ['activePage' => 'Liste des utilisateurs', 'titlePage' => __('User Management')])
 
 @section('content')
   <div class="content">
@@ -25,20 +25,20 @@
                 @endif
                 <div class="row">
                   <div class="col-12 text-right">
-                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter un utilisateur') }}</a>
                   </div>
                 </div>
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                          {{ __('Name') }}
+                          {{ __('Nom') }}
                       </th>
                       <th>
                         {{ __('Email') }}
                       </th>
                       <th>
-                        {{ __('Creation date') }}
+                        {{ __('Date de création') }}
                       </th>
                       <th class="text-right">
                         {{ __('Actions') }}

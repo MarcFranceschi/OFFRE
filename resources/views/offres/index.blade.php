@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'offre', 'titlePage' => __('Liste des offres')])
+@extends('layouts.app', ['activePage' => 'Liste des offres', 'titlePage' => __('Liste des offres')])
 @section('content')
 <div class="content">
   <div class="container-fluid">
@@ -13,7 +13,7 @@
               <table class="table">
                 <thead class=" text-primary">
                   <div class="col-12 text-right">
-                    <a href="{{ route('create-offre') }}" class="btn btn-sm btn-primary">{{ __('Ajouter une offre') }}</a>
+                    <a href="{{ route('offres.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter une offre') }}</a>
                   </div>
           </div>
           <div class="card-body">
@@ -21,20 +21,23 @@
               <table class="table">
                 <thead class=" text-primary">
                 <th>
-                    Titre
+                {{ __('Titre') }}
                   </th>
                   <th>
-                    Description
+                  {{ __('Description') }}
                   </th>
                   <th>
-                    Niveau
+                  {{ __('Niveau') }}
                   </th>
                   <th>
-                    PDF
+                  {{ __('PDF') }}
                   </th>
+                  <th class="text-right">
+                        {{ __('Actions') }}
+                      </th>
                 </thead>
                 <tbody>
-                @foreach($offreslist as $offres)
+                @foreach($offre as $offres)
                   <tr>
                     <td>
                     {{ $offres->titre }}
@@ -49,10 +52,10 @@
                     {{ $offres->pdf }}
                     </td>
                     <td class="td-actions text-right">
-                              <form action="{{ route('delete-offre', $offres) }}" method="put">
+                              <form action="{{ route('offres.destroy', $offres) }}" method="post">
                                   @csrf
                                   @method('delete')
-                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('edit-offre', $offres) }}" data-original-title="" title="">
+                                  <a rel="tooltip" class="btn btn-success btn-link" href="{{ route('offres.edit', $offres) }}" data-original-title="" title="">
                                     <i class="material-icons">edit</i>
                                     <div class="ripple-container"></div>
                                   </a>

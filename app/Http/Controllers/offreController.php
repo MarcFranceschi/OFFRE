@@ -8,21 +8,28 @@ use App\Offre;
 class offreController extends Controller
 {
     //
+   
+    public function index()
+    {
+    $offre = Offre::all();
+    //dd($offreslist);
+    return view('offres.index',compact('offre'));
+    }
+    public function create()
+    {
+        return view('offres.create');
+    }
     public function store(Request $request)
     {
         $offre = new Offre;
-        $offre->Titre=$request->get('Titre');
-        $offre->Description=$request->get('Description');
-        $offre->Niveau=$request->get('Niveau');
+        $offre->titre=$request->get('titre');
+        $offre->description=$request->get('description');
+        $offre->niveau=$request->get('niveau');
         $offre->save();
+        return redirect()->route('offres.index')->with('success','Offre created successfully');
+
     }
    
-    public function list()
-    {
-    $offreslist = Offre::all();
-    //dd($offreslist);
-    return view('offres.list',compact('offreslist'));
-    }
     /**
      * Show the form for editing the specified offre
      *
@@ -31,6 +38,7 @@ class offreController extends Controller
      */
     public function edit(Offre $offre)
     {
+
        return view('offres.edit', compact('offre'));
     }
   
@@ -40,16 +48,19 @@ class offreController extends Controller
      * @param  \App\Offre  $offre
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,Offre  $offre)
+    
+    public function update(Request $request, Offre $offre)
     {
-        $offre = new Offre;
-        $offre->Titre=$request->get('titre');
-        $offre->Description=$request->get('description');
-        $offre->Niveau=$request->get('niveau');
-        $offre->save();
+        $request->validate([
+            'titre' => 'required',
+            'description' => 'required',
+            'niveau' => 'required',
 
-
-        return redirect()->route('offres')->withStatus(__('User successfully updated.'));
+        ]);
+  
+        $offre->update($request->all());
+  
+        return redirect()->route('offres.index')->with('success','Offre updated successfully');
     }
     /**
      * Remove the specified offre from storage
@@ -61,6 +72,8 @@ class offreController extends Controller
     {
         $offre->delete();
 
-        return redirect()->route('offres')->withStatus(__('Offre supprimée.'));
+        return redirect()->route('offres.index')->with('success','Offre deleted successfully');
+
     }
+
 }

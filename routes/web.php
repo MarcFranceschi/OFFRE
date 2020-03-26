@@ -16,12 +16,15 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
-Route::get('/list','offreController@list');
-Route::get('/edit','offreController@edit')->name('edit-offre');
-Route::put('/delete','offreController@destroy')->name('delete-offre');
-Route::put('/update','offreController@update')->name('update-offre');
-Route::get('offres-list','offreController@list')->name('offres');
+Route::get('/home', 'offreController@index')->name('home')->middleware('auth');
+//Route::get('/list','offreController@list');
+//Route::get('/edit','offreController@edit')->name('edit-offre');
+//Route::put('/delete','offreController@destroy')->name('delete-offre');
+//Route::put('/update','offreController@update')->name('update-offre');
+//Route::get('offres.index','offreController@list')->name('offres');
+//Route::resource('offres','offreController');
+Route::resource('offres', 'offreController', ['except' => ['show']]);
+
 
 Route::post('/store','offreController@store')->name('store');
 
