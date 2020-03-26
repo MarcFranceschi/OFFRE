@@ -17,11 +17,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/list','offreController@list');
+Route::get('/edit','offreController@edit')->name('edit-offre');
+Route::put('/delete','offreController@destroy')->name('delete-offre');
+Route::put('/update','offreController@update')->name('update-offre');
+Route::get('offres-list','offreController@list')->name('offres');
+
+Route::post('/store','offreController@store')->name('store');
+
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
 
 	Route::get('typography', function () {
 		return view('pages.typography');
@@ -46,6 +51,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('upgrade', function () {
 		return view('pages.upgrade');
 	})->name('upgrade');
+
+	Route::get('createOffre',function() {
+		return view('offres.create');
+	})->name('create-offre');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -54,4 +63,3 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
-
