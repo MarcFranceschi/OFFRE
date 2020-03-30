@@ -5,10 +5,9 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ route('offres.store') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ route('offres.store') }}" autocomplete="off" class="form-horizontal" enctype="multipart/form-data" accept-charset="utf-8">
             @csrf
             @method('post')
-
             <div class="card ">
               <div class="card-header card-header-primary">
                 <h4 class="card-title">{{ __('Ajouter une offre') }}</h4>
@@ -53,15 +52,29 @@
                     </div>
                   </div>
                 </div>
+
                 <div class="row">
                   <label class="col-sm-2 col-form-label" for="input-pdf">{{ __('PDF') }}</label>
                   <div class="col-sm-7">
-                    <div class="form-group">
-                      <input class="form-control" name="pdf" id="pdf" type="document" placeholder="{{ __('pdf') }}" />
+                  @csrf
+                    <div class="form-group{{ $errors->has('pdf') ? ' has-danger' : '' }}">
+                    <!-- Upload  -->
+                    <input class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}"  type="file" accept="application/pdf" name="fileUpload" id="fileUpload"  value="{{ old('fileUpload') }}">
+        <label for="fileUpload" id="file-drag">
+            <div id="start" >
+               <!-- <div>Select a file or drag here</div>-->
+                <span id="fileUpload" class="btn btn-primary">{{ __('Séléctionner un fichier') }}</span>
+                <br>
+                @if ($errors->has('niveau'))
+                <span id="niveau-error" class="error text-danger">{{ $errors->first('fileUpload') }}</span>
+                @endif
+            </div>
+          </label>
                     </div>
                   </div>
                 </div>
               </div>
+
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Ajouter l\'offre') }}</button>
               </div>

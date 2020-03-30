@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'Liste des utilisateurs', 'titlePage' => __('User Management')])
+@extends('layouts.app', ['activePage' => 'Liste des utilisateurs', 'titlePage' => __('Gestion des utilisateurs')])
 
 @section('content')
   <div class="content">
@@ -7,8 +7,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title ">{{ __('Users') }}</h4>
-                <p class="card-category"> {{ __('Here you can manage users') }}</p>
+                <h4 class="card-title ">{{ __('Utilisateur') }}</h4>
               </div>
               <div class="card-body">
                 @if (session('status'))

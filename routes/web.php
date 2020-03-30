@@ -24,6 +24,7 @@ Route::get('/home', 'offreController@index')->name('home')->middleware('auth');
 //Route::get('offres.index','offreController@list')->name('offres');
 //Route::resource('offres','offreController');
 Route::resource('offres', 'offreController', ['except' => ['show']]);
+Route::get('/test', 'testOffre@store')->name('test');
 
 
 Route::post('/store','offreController@store')->name('store');

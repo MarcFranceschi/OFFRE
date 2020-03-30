@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
 
-        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('user.index')->withStatus(__('Utilisateur créé avec succès.'));
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
                 ->except([$hasPassword ? '' : 'password']
         ));
 
-        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('user.index')->withStatus(__('Utilisateur mis à jour avec succès.'));
     }
 
     /**
@@ -82,6 +82,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('user.index')->withStatus(__('Utilisateur supprimé avec succès.'));
     }
 }
