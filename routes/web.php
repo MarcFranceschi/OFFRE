@@ -11,24 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Auth::routes();
+Route::get('/', function () { 
+	return view('home');
+})->name('home');
 
-Route::get('/home', 'offreController@index')->name('home')->middleware('auth');
+Auth::routes();
+Route::resource('offres', 'offreController')->middleware('auth');
+Route::resource('front.offres','FrontOffreController');
+Route::get('/back', 'offreController@index')->name('back')->middleware('auth');
+Route::get('/nos-offres','FrontOffreController@index')->name('les-offres');
 //Route::get('/list','offreController@list');
 //Route::get('/edit','offreController@edit')->name('edit-offre');
 //Route::put('/delete','offreController@destroy')->name('delete-offre');
+//Route::post('/store','offreController@store')->name('store');
 //Route::put('/update','offreController@update')->name('update-offre');
 //Route::get('offres.index','offreController@list')->name('offres');
 //Route::resource('offres','offreController');
-Route::resource('offres', 'offreController', ['except' => ['show']]);
-Route::get('/test', 'testOffre@store')->name('test');
-
-
-Route::post('/store','offreController@store')->name('store');
-
 
 Route::group(['middleware' => 'auth'], function () {
 

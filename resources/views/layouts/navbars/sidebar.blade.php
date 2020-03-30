@@ -12,9 +12,9 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
+        <a class="nav-link" href="{{ route('back') }}">
           <i class="material-icons">dashboard</i>
-            <p>{{ __('Tableau de bord') }}</p>
+          <p>{{ __('Tableau de bord') }}</p>
         </a>
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
@@ -50,43 +50,17 @@
         </a>
         <div class="collapse show" id="GestionOffre">
           <ul class="nav">
-          <li class="nav-item{{ $activePage == 'offre' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('offres.index') }}">
-          <i class="material-icons">content_paste</i>
-            <p>{{ __('Gérer les offres') }}</p>
-        </a>
-      </li>
-          <!--  <li class="nav-item{{ $activePage == 'offres' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('offres.create') }}">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('Créer une offre') }} </span>
+            <li class="nav-item{{ $activePage == 'offre' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ route('offres.index') }}">
+                <i class="material-icons">content_paste</i>
+                <p>{{ __('Gérer les offres') }}</p>
               </a>
-            </li> -->
-            
+            </li>
+
           </ul>
         </div>
       </li>
-     
-      <!--<li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
-        </a>
-      </li>
-  
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('notifications') }}">
-          <i class="material-icons">notifications</i>
-          <p>{{ __('Notifications') }}</p>
-        </a>
-      </li>
- 
-      <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('upgrade') }}">
-          <i class="material-icons">unarchive</i>
-          <p>{{ __('Upgrade to PRO') }}</p>
-        </a>
-      </li>-->
+
     </ul>
   </div>
 </div>

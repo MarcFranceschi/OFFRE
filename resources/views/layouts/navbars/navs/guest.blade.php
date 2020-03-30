@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
-  <div class="container">
+<div class="container-fluid">
     <div class="navbar-wrapper">
       <a class="navbar-brand" href="{{ route('home') }}">{{ __('') }}</a>
     </div>
@@ -12,12 +12,12 @@
     </button>
     <div class="collapse navbar-collapse justify-content-end">
       <ul class="navbar-nav">
-       <!-- <li class="nav-item">
-          <a href="{{ route('home') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Dashboard') }}
+        <li class="nav-item">
+          <a href="{{ route('les-offres') }}" class="nav-link">
+            <i class="material-icons">dashboard</i> {{ __('Les offres') }}
           </a>
         </li>
-        <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
+        <!-- <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
           <a href="{{ route('register') }}" class="nav-link">
             <i class="material-icons">person_add</i> {{ __('Register') }}
           </a>
@@ -32,9 +32,10 @@
             <i class="material-icons">fingerprint</i> {{ __('Connexion') }}
           </a>
         </li>
-        
+
       </ul>
     </div>
   </div>
 </nav>
 <!-- End Navbar -->
+    

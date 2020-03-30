@@ -3,20 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\FormRequest;
 use Illuminate\Http\UploadedFile;
 use App\Offre;
-use Redirect;
-use Response;
-use Validator;
+use \Validator;
 use File;
-use FileModel;
-use Illuminate\Support\Facades\Storage;
+
 
 
 class offreController extends Controller
 {
-     /**
+    /**
      * Affichage de toutes les offres
      *
      * @param  \App\Offre  $offre
@@ -27,7 +23,7 @@ class offreController extends Controller
         $offre = Offre::all();
         return view('offres.index', compact('offre'));
     }
-     /**
+    /**
      * Retour de la vue permettant de créer une offre
      *
      * @param  \App\Offre  $offre
@@ -37,7 +33,7 @@ class offreController extends Controller
     {
         return view('offres.create');
     }
-     /**
+    /**
      * Création d'une offre
      *
      * @param  \App\Offre  $offre
@@ -46,8 +42,10 @@ class offreController extends Controller
     public function store(Request $request)
     {
         $offre = new Offre;
-        // On oblige a choisir un fichier avant de valider la requête
+        // On oblige à respecter certains critères avant de valider la requête
         $validator = Validator::make($request->all(), [
+            'titre' => 'required|max:255',
+            'niveau' => 'required|max:15',
             'fileUpload' => 'required|max:204800',
         ]);
         // Si la validation échoue
@@ -100,7 +98,16 @@ class offreController extends Controller
     {
         // On stock le fichier sélectionné 
         $pdf_upload = $request->file('fileUpload');
-
+        // On oblige à respecter certains critères avant de valider la requête
+        $validator = Validator::make($request->all(), [
+            'titre' => 'required|max:255',
+            'niveau' => 'required|max:15',
+            'fileUpload' => 'required|max:204800',
+        ]);
+        // Si la validation échoue
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator->errors());
+        }
         //Si il y a un fichier
         if ($pdf_upload) {
             // Définition du chemin de stockage
