@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  lun. 30 mars 2020 à 08:21
+-- Généré le :  lun. 30 mars 2020 à 16:34
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.19
 
@@ -93,7 +93,8 @@ CREATE TABLE `offres` (
 --
 
 INSERT INTO `offres` (`id`, `titre`, `description`, `niveau`, `pdf`) VALUES
-(75, 'Offre de test', 'Laravel 5.6 Image Upload Tutorial with Example. To take a step further, we will now implement file uploading and downloading in Laravel.Since we already created a fresh project in the last segment, we will continue building it in the same Book App.To make this app a little more useful, we will let users upload the jacket of the book so that other users can download this book cover in future.', 'CP', 'C:\\laragon\\www\\tp_offre\\OFFRE\\public\\uploads\\2020-03-29 - JSE - ACCES AUX BASES DE DONNEES - S5.pdf');
+(123, 'A Note On Optional Fields', 'By default, Laravel includes the TrimStrings and ConvertEmptyStringsToNull middleware in your application\'s global middleware stack. These middleware are listed in the stack by the App\\Http\\Kernel class. Because of this, you will often need to mark your \"optional\" request fields as nullable if you do not want the validator to consider null values as invalid.', 'BAC+5', '\\uploads\\2020-03-30 - JSE - BASES DU LANGAGE - S2.pdf'),
+(122, 'Displaying The Validation Errors', 'So, what if the incoming request parameters do not pass the given validation rules? As mentioned previously, Laravel will automatically redirect the user back to their previous location. In addition, all of the validation errors will automatically be flashed to the session.  Again, notice that we did not have to explicitly bind the error messages to the view in our GET route. This is because Laravel will check for errors in the session data, and automatically bind them to the view if they are available. The $errors variable will be an instance of Illuminate\\Support\\MessageBag. For more information on working with this object, check out its documentation.', 'BTS', '\\uploads\\2020-03-30 - JSE - PRESENTATION - S1.pdf');
 
 -- --------------------------------------------------------
 
@@ -130,8 +131,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin Admin', 'admin@material.com', '2020-03-26 12:26:54', '$2y$10$tHxLNLyIzb476VOlPyCMQOjaEkU0KmDhYf2TbleMt1p3bemulPXnW', NULL, '2020-03-26 12:26:54', '2020-03-26 12:26:54'),
-(2, 'test', 'test@test.com', NULL, '$2y$10$lnqow5XyZS4skTTEyOWHKOdBkzf6cuU54bOfu7eFtKxN9OOU6d/xq', NULL, '2020-03-26 14:27:08', '2020-03-28 11:24:23'),
-(3, 'tes', 'tttttttttttttttttt@gmail.com', NULL, '$2y$10$gTFG0RJoVmt7WqFElwKDReSupz5xFTfdnHOtgyYBSAG0rQsKSFGXO', NULL, '2020-03-28 11:29:57', '2020-03-28 11:29:57');
+(2, 'test', 'test@test.com', NULL, '$2y$10$gYU2SrAz9N5.WS.0kgSH1uIud97Ffr7mZ87KCBejESWu.SpomJSEW', NULL, '2020-03-26 14:27:08', '2020-03-30 13:17:41');
 
 --
 -- Index pour les tables déchargées
@@ -188,7 +188,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT pour la table `offres`
 --
 ALTER TABLE `offres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT pour la table `users`
