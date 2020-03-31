@@ -45,6 +45,9 @@
                     <th>
                       {{ __('PDF') }}
                     </th>
+                    <th>
+                      {{ __('Date de création') }}
+                    </th>
                     <th class="text-right">
                       {{ __('Actions') }}
                     </th>
@@ -70,6 +73,9 @@
                         </div>
                         <!-- -->
                       </td>
+                      <td>
+                      {{ $offres->created_at }}
+                          </td>
                       <td class="td-actions text-right">
                         <form action="{{ route('offres.destroy', $offres) }}" method="post">
                           @csrf

@@ -34,6 +34,9 @@
                           {{ __('Nom') }}
                       </th>
                       <th>
+                          {{ __('Prénom') }}
+                      </th>
+                      <th>
                         {{ __('Email') }}
                       </th>
                       <th>
@@ -48,6 +51,9 @@
                         <tr>
                           <td>
                             {{ $user->name }}
+                          </td>
+                          <td>
+                            {{ $user->surname }}
                           </td>
                           <td>
                             {{ $user->email }}

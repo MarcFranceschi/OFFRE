@@ -20,6 +20,7 @@
                       <a href="{{ route('user.index') }}" class="btn btn-sm btn-primary">{{ __('Retour à la liste') }}</a>
                   </div>
                 </div>
+                <!-- Nom -->
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Nom') }}</label>
                   <div class="col-sm-7">
@@ -31,6 +32,19 @@
                     </div>
                   </div>
                 </div>
+                <!-- Prénom -->
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Prénom') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group{{ $errors->has('surname') ? ' has-danger' : '' }}">
+                      <input class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" id="input-surname" type="text" placeholder="{{ __('Prénom') }}" value="{{ old('surname') }}" required="true" aria-required="true"/>
+                      @if ($errors->has('surname'))
+                        <span id="surname-error" class="error text-danger" for="input-surname">{{ $errors->first('Prénom') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                </div>
+                <!-- Email -->
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
                   <div class="col-sm-7">
@@ -42,6 +56,7 @@
                     </div>
                   </div>
                 </div>
+                 <!-- Mot de passe -->
                 <div class="row">
                   <label class="col-sm-2 col-form-label" for="input-password">{{ __(' Mot de passe') }}</label>
                   <div class="col-sm-7">
@@ -52,7 +67,8 @@
                       @endif
                     </div>
                   </div>
-                </div>
+                </div>        
+                 <!-- Confirmation du mot de passe -->
                 <div class="row">
                   <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Confirmation du mot de passe') }}</label>
                   <div class="col-sm-7">
@@ -61,6 +77,7 @@
                     </div>
                   </div>
                 </div>
+                  <!-- -->
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="submit" class="btn btn-primary">{{ __('Ajouter') }}</button>

@@ -71,6 +71,7 @@ class offreController extends Controller
         $offre->titre = $request->get('titre');
         $offre->description = $request->get('description');
         $offre->niveau = $request->get('niveau');
+        $offre->created_at = now();
 
         $offre->save();
 
@@ -130,6 +131,7 @@ class offreController extends Controller
                     $offre->description = $request->get('description');
                     $offre->niveau = $request->get('niveau');
                     $offre->pdf = $pdf_get;
+                    $offre->updated_at = now();
 
                     $offre->save();
                 }

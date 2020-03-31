@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  lun. 30 mars 2020 à 16:34
+-- Généré le :  mar. 31 mars 2020 à 13:48
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.19
 
@@ -72,7 +72,14 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2020_03_31_092446_create_users_table', 2),
+(5, '2020_03_31_105008_create_offres_table', 3),
+(6, '2020_03_31_105645_create_users_table', 4),
+(7, '2020_03_31_105908_create_offres_table', 5),
+(8, '2020_03_31_105943_create_users_table', 5),
+(9, '2020_03_31_110243_create_offres_table', 6),
+(10, '2020_03_31_110354_create_users_table', 6);
 
 -- --------------------------------------------------------
 
@@ -81,20 +88,21 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `offres` (
-  `id` int(11) NOT NULL,
-  `titre` varchar(255) COLLATE utf8_bin NOT NULL,
-  `description` longtext COLLATE utf8_bin NOT NULL,
-  `niveau` varchar(255) COLLATE utf8_bin NOT NULL,
-  `pdf` varchar(255) COLLATE utf8_bin DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `titre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `niveau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pdf` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `offres`
 --
 
-INSERT INTO `offres` (`id`, `titre`, `description`, `niveau`, `pdf`) VALUES
-(123, 'A Note On Optional Fields', 'By default, Laravel includes the TrimStrings and ConvertEmptyStringsToNull middleware in your application\'s global middleware stack. These middleware are listed in the stack by the App\\Http\\Kernel class. Because of this, you will often need to mark your \"optional\" request fields as nullable if you do not want the validator to consider null values as invalid.', 'BAC+5', '\\uploads\\2020-03-30 - JSE - BASES DU LANGAGE - S2.pdf'),
-(122, 'Displaying The Validation Errors', 'So, what if the incoming request parameters do not pass the given validation rules? As mentioned previously, Laravel will automatically redirect the user back to their previous location. In addition, all of the validation errors will automatically be flashed to the session.  Again, notice that we did not have to explicitly bind the error messages to the view in our GET route. This is because Laravel will check for errors in the session data, and automatically bind them to the view if they are available. The $errors variable will be an instance of Illuminate\\Support\\MessageBag. For more information on working with this object, check out its documentation.', 'BTS', '\\uploads\\2020-03-30 - JSE - PRESENTATION - S1.pdf');
+INSERT INTO `offres` (`id`, `titre`, `description`, `niveau`, `pdf`, `created_at`, `updated_at`) VALUES
+(1, 'Administrateur réseaux informatique F/H - Exploitation, maintenance informatique (H/F)', 'Au sein de la Direction des S.I (100 personnes), rattaché(e) au Responsable Infrastructure et Réseaux, au sein d\'une équipe de 6 personnes, vous assurez l\'exploitation de l\'infrastructure réseau du groupe, le support niveau 2/3 et participez au projet de modernisation du SI. Vos principales missions seront les suivantes : EXPLOITATIONExploiter les réseaux (Switch HP, Firewall Fortinet, Plateforme de management IMC HP, supervision)Réaliser des rapports d\'exploitation mensuels,Exploitation indirecte via un partenaire de la sécurité périmétrique (LoadBalancer F5, Netscaler Citrix, Firewall Fortinet),Gérer au travers d\'un catalogue de service et suivre des SLAs avec ce partenaire,Exploiter les Wifi (Borne et contrôleur wifi Extrem Network). ADMINISTRATIONAdministrer quotidiennement l\'infrastructure LAN, WLAN, SDWAN et sécurité de l\'entreprise, en garantissant notamment son maintien en condition opérationnelle,Opérer un support technique de niveau 3 auprès des établissements et des équipes supports,Suivre la résolution des incidents opérateurs sur un VPN MPLS opérateur de 400 établissements,Rédaction de notes techniques et de tutoriels,Favoriser le rapprochement des différents systèmes informatiques et assurer conjointement avec d\'autres personnels la maintenance au quotidien. GESTION DES EVOLUTIONSÊtre force de propositions pour faire évoluer les infrastructures,Piloter les mises en place de ces évolutions - gestion de projets. - De formation supérieure informatique, vous avez une première expérience acquise dans l\'administration réseaux, vous avez une certaine aisance relationnelle et un fort esprit d\'initiatives. Vous êtes reconnu(e) pour vos capacités de synthèse dans l\'analyse des besoins utilisateurs, vos capacités à gérer les priorités et les risques, votre rigueur de pilotage, et votre sens du service interne.Vous souhaitez intégrer une structure à taille humaine avec une délégation importante et une obligation de résultats.  Poste à pourvoir en CDI, basé à Lyon (69) - .Notre client, Groupe français de santé, recherche dans le cadre de la croissance de son Système d\'Information : Un(e) Administrateur réseaux.', 'BAC + 3', '\\uploads\\2020-03-31 - JSE - PRESENTATION - S1.pdf', '2020-03-31 09:07:32', '2020-03-31 09:07:32');
 
 -- --------------------------------------------------------
 
@@ -117,8 +125,8 @@ CREATE TABLE `password_resets` (
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `surname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -129,9 +137,8 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin Admin', 'admin@material.com', '2020-03-26 12:26:54', '$2y$10$tHxLNLyIzb476VOlPyCMQOjaEkU0KmDhYf2TbleMt1p3bemulPXnW', NULL, '2020-03-26 12:26:54', '2020-03-26 12:26:54'),
-(2, 'test', 'test@test.com', NULL, '$2y$10$gYU2SrAz9N5.WS.0kgSH1uIud97Ffr7mZ87KCBejESWu.SpomJSEW', NULL, '2020-03-26 14:27:08', '2020-03-30 13:17:41');
+INSERT INTO `users` (`id`, `name`, `surname`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(4, 'Admin', 'Admin', 'admin@material.com', '$2y$10$G0TyyOY2FrnfX07u3.DvPejU9EAqDVq4RzQl1d2cIYvtAE9ZgEE92', NULL, '2020-03-31 09:07:32', '2020-03-31 09:07:32');
 
 --
 -- Index pour les tables déchargées
@@ -182,19 +189,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `offres`
 --
 ALTER TABLE `offres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
