@@ -12,7 +12,7 @@
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('back') }}">
+        <a class="nav-link" href="{{ route('les-offres') }}">
           <i class="material-icons">dashboard</i>
           <p>{{ __('Tableau de bord') }}</p>
         </a>
