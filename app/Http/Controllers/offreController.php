@@ -103,7 +103,6 @@ class offreController extends Controller
         $validator = Validator::make($request->all(), [
             'titre' => 'required|max:255',
             'niveau' => 'required|max:15',
-            'fileUpload' => 'required|max:204800',
         ]);
         // Si la validation échoue
         if ($validator->fails()) {

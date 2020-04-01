@@ -21,7 +21,6 @@
               </div>
             </div>
             @endif
-
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
@@ -74,8 +73,8 @@
                         <!-- -->
                       </td>
                       <td>
-                      {{ $offres->created_at }}
-                          </td>
+                        {{ $offres->created_at }}
+                      </td>
                       <td class="td-actions text-right">
                         <form action="{{ route('offres.destroy', $offres) }}" method="post">
                           @csrf
