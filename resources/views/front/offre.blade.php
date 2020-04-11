@@ -1,4 +1,4 @@
-@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'les-offres', 'title' => __('Nos offres')])
+@extends('layouts.app', ['class' => 'off-canvas-sidebar', 'activePage' => 'les-offres', 'title' => __('Détail offre')])
 
 @section('content')
 <div class="content">
@@ -7,7 +7,7 @@
             <div class="col-md-12">
                            <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title ">{{ __('Offre(s) disponible(s) :') }}</h4>
+                        <h4 class="card-title ">{{ __('Détail de l\'offre :') }}</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -33,8 +33,7 @@
                                             {{ $offres->titre }}
                                         </td>
                                         <td>
-                                       {{ \Illuminate\Support\Str::limit($offres->description, 300, $end='...') }}
-                                         <a href="{{ route('offres.show', $offres) }}"?id=description>Afficher plus</a>
+                                       {{ $offres->description }}
                                         </td>
                                         <td>
                                             {{ $offres->niveau }}
@@ -51,8 +50,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $offre->onEachSide(5)->links() }}
-
                         </div>
                     </div>
                 </div>

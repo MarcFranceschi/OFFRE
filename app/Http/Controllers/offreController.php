@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
 use App\Offre;
 use \Validator;
 use File;
+use Mail;
 
 
 
 class offreController extends Controller
 {
+ 
     /**
      * Affichage de toutes les offres
      *
@@ -21,8 +24,11 @@ class offreController extends Controller
     public function index()
     {
         $offre = Offre::all();
+        $offre = Offre::paginate(5);
+
         return view('offres.index', compact('offre'));
     }
+     
     /**
      * Retour de la vue permettant de créer une offre
      *
@@ -74,8 +80,24 @@ class offreController extends Controller
         $offre->created_at = now();
 
         $offre->save();
+        $offre_id = $offre->id;
 
-        return redirect()->route('offres.index')->withStatus(__('Offre créée avec succès.'));
+        $mailuserget=DB::table('users')->select('email')->whereNotNull('email')->pluck('email');
+        foreach ($mailuserget as $mailuser) {
+            
+           // dd($offre);
+            //return view('mail', compact('offre'));
+            $data = array('offre'=>$offre_id);
+           // dd($data);
+        Mail::send('mail',$data, function ($message) use ($mailuser,$offre){
+              $message->to($mailuser)
+              ->subject('Nouvelle offre d\'emplois disponible');
+              $message->from('tplaravel284@gmail.com','Careers - Lycée Pasteur Mond Roland');
+            });
+          }
+  
+        return redirect()->route('offres.index')->withStatus(__('Offre créée avec succès. Un mail a été envoyé à l\'ensemble des utilisateurs.'));
+ 
     }
     /**
      * Retour de la vue permettant de modifier une offre
@@ -86,6 +108,16 @@ class offreController extends Controller
     public function edit(Offre $offre)
     {
         return view('offres.edit', compact('offre'));
+    }
+        /**
+     * Affichage de l'offre séléctionnée
+     *
+     * @param  \App\Offre  $offre
+     * @return \Illuminate\View\View
+     */
+    public function show(Offre $offre)
+    {
+        return view('offres.show', compact('offre'));
     }
 
     /**

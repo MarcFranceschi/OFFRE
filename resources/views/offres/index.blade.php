@@ -58,7 +58,12 @@
                         {{ $offres->titre }}
                       </td>
                       <td>
-                        {{ $offres->description }}
+
+                        {{ \Illuminate\Support\Str::limit($offres->description, 100, $end='...') }}
+                        <a rel="tooltip" href="{{ route('offres.show', $offres) }}" data-original-title="" title="">
+                          {{ 'Afficher plus' }}
+                        </a>
+
                       </td>
                       <td>
                         {{ $offres->niveau }}
@@ -94,6 +99,7 @@
                     @endforeach
                   </tbody>
                 </table>
+                {{ $offre->onEachSide(5)->links() }}
               </div>
             </div>
           </div>

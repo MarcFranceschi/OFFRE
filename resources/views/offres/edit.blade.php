@@ -37,8 +37,9 @@
                 <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                    <input class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-descr" type="texte" placeholder="{{ __('Email') }}" value="{{ old('email', $offre->description) }}" required />
-                    @if ($errors->has('email'))
+                  <textarea  name="description" rows="3" cols="80" placeholder="{{ __('Description') }}" required>{{ old('description', $offre->description) }}</textarea>
+                    <!--<input class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" id="input-descr" type="texte" placeholder="{{ __('Email') }}" value="{{ old('description', $offre->description) }}" required />-->
+                    @if ($errors->has('description'))
                     <span id="description-error" class="error text-danger" for="input-descr">{{ $errors->first('description') }}</span>
                     @endif
                   </div>

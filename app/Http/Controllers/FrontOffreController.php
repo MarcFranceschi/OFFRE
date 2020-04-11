@@ -7,14 +7,18 @@ use App\Offre;
 
 class FrontOffreController extends Controller
 {
+    
     /**
-     * Show the application dashboard.
+     * Récupération de toutes les offres
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
         $offre = Offre::all();
+        $offre = Offre::paginate(5);
+
         return view('front.index', compact('offre'));
     }
+   
 }
