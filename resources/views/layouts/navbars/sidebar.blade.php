@@ -43,7 +43,6 @@
           </ul>
         </div>
       </li>
-      @can('offre-list')
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#GestionOffre" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -51,29 +50,27 @@
             <b class="caret"></b>
           </p>
         </a>
+        @can('offre-list')
         <div class="collapse show" id="GestionOffre">
           <ul class="nav">
             <li class="nav-item">
               <a class="nav-link" href="{{ route('front.index') }}">
                 <i class="material-icons">content_paste</i>
-                <p>{{ __('Consulter les offres') }}</p>
+                <span class="sidebar-normal"> {{ __('Consulter les offres') }} </span>
               </a>
             </li>
-          </ul>
-        </div>
         @endcan
         @can('offre-create')
-        <div class="collapse show" id="GestionOffre">
-          <ul class="nav">
+      
             <li class="nav-item">
               <a class="nav-link" href="{{ route('offres.index') }}">
                 <i class="material-icons">content_paste</i>
-                <p>{{ __('Gérer les offres') }}</p>
+                <span class="sidebar-normal"> {{ __('Gérer les offres') }} </span>
               </a>
             </li>
+            @endcan
           </ul>
         </div>
-        @endcan
       </li>
       @can('role-list')
       <li class="nav-item">
@@ -83,12 +80,12 @@
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="GestionRpme">
+        <div class="collapse show" id="GestionRole">
           <ul class="nav">
             <li class="nav-item">
               <a class="nav-link" href="{{ route('roles.index') }}">
                 <i class="material-icons">content_paste</i>
-                <p>{{ __('Gérer les rôles') }}</p>
+                <span class="sidebar-normal"> {{ __('Gérer les roles') }} </span>
               </a>
             </li>
           </ul>

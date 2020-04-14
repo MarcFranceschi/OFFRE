@@ -24,43 +24,43 @@
             @endif
             <div class="row">
               <div class="col-12 text-right">
-              @can('user-create')
+                @can('user-create')
                 <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Ajouter un utilisateur') }}</a>
                 @endcan
               </div>
             </div>
             <div class="row">
-
-            <div class="col-12 text-right">
-                    @can('user-delete')
-                    <button style="margin-bottom: 10px" class="btn btn-sm btn-primary delete_all" data-url="{{ url('users-deleteselection') }}">Supprimer la séléction</button>
-                    @endcan
-                  </div>
-                  </div>
-
+              <div class="col-12 text-right">
+                @can('user-delete')
+                <button style="margin-bottom: 10px" class="btn btn-sm btn-primary delete_all" data-url="{{ url('users-deleteselection') }}">Supprimer la séléction</button>
+                @endcan
+              </div>
+            </div>
             <div class="table-responsive">
-              <table class="table">
+              <table id="table_id" class="table">
                 <thead class=" text-primary">
-                  <th>
-                    {{ __('Nom') }}
-                  </th>
-                  <th>
-                    {{ __('Prénom') }}
-                  </th>
-                  <th>
-                    {{ __('Email') }}
-                  </th>
-                  <th>
-                    {{ __('Date de création') }}
-                  </th>
-                  <th>
-                    {{ __('Role') }}
-                  </th>
-                  <th class="text-right">
-                    {{ __('Actions') }}
-                  </th>
-                  <th width="50px"><input type="checkbox" id="master">
-                          </th>
+                  <tr>
+                    <th>
+                      {{ __('Nom') }}
+                    </th>
+                    <th>
+                      {{ __('Prénom') }}
+                    </th>
+                    <th>
+                      {{ __('Email') }}
+                    </th>
+                    <th>
+                      {{ __('Date de création') }}
+                    </th>
+                    <th>
+                      {{ __('Role') }}
+                    </th>
+                    <th class="text-right">
+                      {{ __('Actions') }}
+                    </th>
+                    <th width="50px"><input type="checkbox" id="master">
+                    </th>
+                  </tr>
                 </thead>
                 <tbody>
                   @foreach($users as $user)
@@ -81,10 +81,8 @@
                       @if(!empty($user->getRoleNames()))
                       @foreach($user->getRoleNames() as $v)
                       <label class="badge badge-success">{{ $v }}</label>
-
                       @endforeach
                       @endif
-
                     </td>
                     <td class="td-actions text-right">
                       @if ($user->id != auth()->id())
@@ -109,14 +107,13 @@
                       @endif
                     </td>
                     <td>
-                              <input type="checkbox" class="sub_chk" data-id="{{$user->id}}">
-                            </td>
+                      <input type="checkbox" class="sub_chk" data-id="{{$user->id}}">
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               {{ $users->onEachSide(5)->links() }}
-
             </div>
           </div>
         </div>
