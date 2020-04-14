@@ -5,6 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
+            @can('offre-list')
                            <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">{{ __('Offre(s) disponible(s) :') }}</h4>
@@ -52,11 +53,12 @@
                                 </tbody>
                             </table>
                             {{ $offre->onEachSide(5)->links() }}
-
                         </div>
                     </div>
                 </div>
             </div>
+            @endcan
+
         </div>
     </div>
 </div>

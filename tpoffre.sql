@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  mar. 31 mars 2020 à 13:48
+-- Généré le :  mar. 14 avr. 2020 à 08:26
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.19
 
@@ -25,18 +25,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `entreprises`
+-- Structure de la table `cache`
 --
 
-CREATE TABLE `entreprises` (
-  `id` int(255) NOT NULL,
-  `nom` varchar(255) COLLATE utf8_bin NOT NULL,
-  `adresse` varchar(255) COLLATE utf8_bin NOT NULL,
-  `mail` varchar(255) COLLATE utf8_bin NOT NULL,
-  `contact` varchar(255) COLLATE utf8_bin NOT NULL,
-  `telephone` int(255) NOT NULL,
-  `ville` varchar(255) COLLATE utf8_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -70,16 +66,45 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2020_03_31_092446_create_users_table', 2),
-(5, '2020_03_31_105008_create_offres_table', 3),
-(6, '2020_03_31_105645_create_users_table', 4),
-(7, '2020_03_31_105908_create_offres_table', 5),
-(8, '2020_03_31_105943_create_users_table', 5),
-(9, '2020_03_31_110243_create_offres_table', 6),
-(10, '2020_03_31_110354_create_users_table', 6);
+(1, '2014_10_12_100000_create_password_resets_table', 1),
+(2, '2019_08_19_000000_create_failed_jobs_table', 1),
+(3, '2020_04_12_153825_create_permission_tables', 1),
+(4, '2020_04_12_203404_create_cache_table', 1),
+(5, '2020_04_13_131132_create_users_table', 1),
+(6, '2020_04_13_131741_create_offres_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(2, 'App\\User', 1),
+(3, 'App\\User', 2),
+(2, 'App\\User', 6);
 
 -- --------------------------------------------------------
 
@@ -102,7 +127,8 @@ CREATE TABLE `offres` (
 --
 
 INSERT INTO `offres` (`id`, `titre`, `description`, `niveau`, `pdf`, `created_at`, `updated_at`) VALUES
-(1, 'Administrateur réseaux informatique F/H - Exploitation, maintenance informatique (H/F)', 'Au sein de la Direction des S.I (100 personnes), rattaché(e) au Responsable Infrastructure et Réseaux, au sein d\'une équipe de 6 personnes, vous assurez l\'exploitation de l\'infrastructure réseau du groupe, le support niveau 2/3 et participez au projet de modernisation du SI. Vos principales missions seront les suivantes : EXPLOITATIONExploiter les réseaux (Switch HP, Firewall Fortinet, Plateforme de management IMC HP, supervision)Réaliser des rapports d\'exploitation mensuels,Exploitation indirecte via un partenaire de la sécurité périmétrique (LoadBalancer F5, Netscaler Citrix, Firewall Fortinet),Gérer au travers d\'un catalogue de service et suivre des SLAs avec ce partenaire,Exploiter les Wifi (Borne et contrôleur wifi Extrem Network). ADMINISTRATIONAdministrer quotidiennement l\'infrastructure LAN, WLAN, SDWAN et sécurité de l\'entreprise, en garantissant notamment son maintien en condition opérationnelle,Opérer un support technique de niveau 3 auprès des établissements et des équipes supports,Suivre la résolution des incidents opérateurs sur un VPN MPLS opérateur de 400 établissements,Rédaction de notes techniques et de tutoriels,Favoriser le rapprochement des différents systèmes informatiques et assurer conjointement avec d\'autres personnels la maintenance au quotidien. GESTION DES EVOLUTIONSÊtre force de propositions pour faire évoluer les infrastructures,Piloter les mises en place de ces évolutions - gestion de projets. - De formation supérieure informatique, vous avez une première expérience acquise dans l\'administration réseaux, vous avez une certaine aisance relationnelle et un fort esprit d\'initiatives. Vous êtes reconnu(e) pour vos capacités de synthèse dans l\'analyse des besoins utilisateurs, vos capacités à gérer les priorités et les risques, votre rigueur de pilotage, et votre sens du service interne.Vous souhaitez intégrer une structure à taille humaine avec une délégation importante et une obligation de résultats.  Poste à pourvoir en CDI, basé à Lyon (69) - .Notre client, Groupe français de santé, recherche dans le cadre de la croissance de son Système d\'Information : Un(e) Administrateur réseaux.', 'BAC + 3', '\\uploads\\2020-03-31 - JSE - PRESENTATION - S1.pdf', '2020-03-31 09:07:32', '2020-03-31 09:07:32');
+(1, 'Administrateur réseaux informatique F/H - Exploitation, maintenance informatique (H/F)', 'Au sein de la Direction des S.I (100 personnes), rattaché(e) au Responsable Infrastructure et Réseaux, au sein d\'une équipe de 6 personnes, vous assurez l\'exploitation de l\'infrastructure réseau du groupe, le support niveau 2/3 et participez au projet de modernisation du SI. Vos principales missions seront les suivantes : EXPLOITATIONExploiter les réseaux (Switch HP, Firewall Fortinet, Plateforme de management IMC HP, supervision)Réaliser des rapports d\'exploitation mensuels,Exploitation indirecte via un partenaire de la sécurité périmétrique (LoadBalancer F5, Netscaler Citrix, Firewall Fortinet),Gérer au travers d\'un catalogue de service et suivre des SLAs avec ce partenaire,Exploiter les Wifi (Borne et contrôleur wifi Extrem Network). ADMINISTRATIONAdministrer quotidiennement l\'infrastructure LAN, WLAN, SDWAN et sécurité de l\'entreprise, en garantissant notamment son maintien en condition opérationnelle,Opérer un support technique de niveau 3 auprès des établissements et des équipes supports,Suivre la résolution des incidents opérateurs sur un VPN MPLS opérateur de 400 établissements,Rédaction de notes techniques et de tutoriels,Favoriser le rapprochement des différents systèmes informatiques et assurer conjointement avec d\'autres personnels la maintenance au quotidien. GESTION DES EVOLUTIONSÊtre force de propositions pour faire évoluer les infrastructures,Piloter les mises en place de ces évolutions - gestion de projets. - De formation supérieure informatique, vous avez une première expérience acquise dans l\'administration réseaux, vous avez une certaine aisance relationnelle et un fort esprit d\'initiatives. Vous êtes reconnu(e) pour vos capacités de synthèse dans l\'analyse des besoins utilisateurs, vos capacités à gérer les priorités et les risques, votre rigueur de pilotage, et votre sens du service interne.Vous souhaitez intégrer une structure à taille humaine avec une délégation importante et une obligation de résultats.  Poste à pourvoir en CDI, basé à Lyon (69) - .Notre client, Groupe français de santé, recherche dans le cadre de la croissance de son Système d\'Information : Un(e) Administrateur réseaux.', 'BAC + 3', 'NULL', '2020-04-13 11:19:20', '2020-04-13 11:19:20'),
+(2, 'fdf', 'ddd', 'd', '\\uploads\\2020-04-13 - JSE - PROGRAMMATION OBJET - S3.pdf', '2020-04-13 14:27:29', NULL);
 
 -- --------------------------------------------------------
 
@@ -115,6 +141,97 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('pelletier.ft1@gmail.com', '$2y$10$fE61lU7SW5gUbOe0Rzpn0.MuX/wkJtJsG83wPuZPshedqC4j.GRlu', '2020-04-14 06:15:20');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'role-list', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(2, 'role-create', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(3, 'role-edit', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(4, 'role-delete', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(5, 'offre-list', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(6, 'offre-create', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(7, 'offre-edit', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(8, 'offre-delete', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(9, 'user-list', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(10, 'user-create', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(11, 'user-edit', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01'),
+(12, 'user-delete', 'web', '2020-04-13 11:21:01', '2020-04-13 11:21:01');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(2, 'Administrateur', 'web', '2020-04-13 11:25:45', '2020-04-13 11:25:45'),
+(3, 'Utilisateur', 'web', '2020-04-13 11:27:12', '2020-04-13 11:27:12');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 2),
+(2, 2),
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(5, 3);
 
 -- --------------------------------------------------------
 
@@ -138,11 +255,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `surname`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'Admin', 'Admin', 'admin@material.com', '$2y$10$G0TyyOY2FrnfX07u3.DvPejU9EAqDVq4RzQl1d2cIYvtAE9ZgEE92', NULL, '2020-03-31 09:07:32', '2020-03-31 09:07:32');
+(1, 'Administrateur', 'Global', 'tplaravel284@gmail.com', '$2y$10$KnXfp1GdZh48YWBrIuJDQeNLrqKq/cpsgMtwVtfD8kdjecBy2ACnW', NULL, '2020-04-13 11:19:20', '2020-04-13 14:21:06'),
+(2, 'Utilisateur', 'Test', 'pelletier.ft1@gmail.com', '$2y$10$X8aQQHcur.hEKPg4YHO2IO11zIhdr/mePoUuTOjzlW.G805L28e.m', 'DZnu1ppOp11Cc0efG1kr8hPKFddHqosGnQUYAVNUMxbuCz1zL1w8YaFh10da', '2020-04-13 11:19:20', '2020-04-13 14:15:39'),
+(6, 'Admin', 'Authentification', 'admin@gmail.com', '$2y$10$w0l16ZMWnkG9hzZNJY7Rp.C/avAuqUGVkBvodq/kveMYNKaQQ86kG', 'hZIrwpjl9UkBiIdWwaiVWqPXMFGFwXbLM42dhD2aiYVlAFVJIPGBTYC6pjLK', '2020-04-13 11:25:45', '2020-04-13 11:28:21');
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `cache`
+--
+ALTER TABLE `cache`
+  ADD UNIQUE KEY `cache_key_unique` (`key`);
 
 --
 -- Index pour la table `failed_jobs`
@@ -157,6 +282,20 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Index pour la table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Index pour la table `offres`
 --
 ALTER TABLE `offres`
@@ -169,11 +308,29 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Index pour la table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -189,19 +346,54 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `offres`
 --
 ALTER TABLE `offres`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT pour la table `roles`
+--
+ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

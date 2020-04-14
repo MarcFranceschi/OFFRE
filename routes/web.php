@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () { 
+
+Route::get('/','FrontOffreController@index')->name('home')->middleware('auth');
+
+Route::get('home', function () { 
 	return view('home');
 })->name('home');
-
 Auth::routes();
 Route::resource('offres', 'offreController')->middleware('auth');
 Route::resource('front','FrontOffreController');
@@ -24,6 +26,10 @@ Route::get('/offre','offreController@offre')->name('front.offre');
 
 Route::get('mail/send','MailController@html_email')->name('mail.send');
 Route::get('sendattachmentemail','MailController@attachment_email');
+
+Route::delete('offres/{id}', 'offreController@destroy');
+Route::delete('offres-deleteselection', 'offreController@deleteAll');
+Route::delete('users-deleteselection', 'UserController@deleteAll');
 
 
 //Route::get('/list','offreController@list');
@@ -67,8 +73,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
+	Route::resource('roles','RoleController');
+    Route::resource('offres','offreController');
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
+
 

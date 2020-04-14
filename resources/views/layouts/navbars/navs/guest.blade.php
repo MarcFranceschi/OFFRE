@@ -1,6 +1,6 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
-<div class="container-fluid">
+  <div class="container-fluid">
     <div class="navbar-wrapper">
       <a class="navbar-brand" href="{{ route('home') }}">{{ __('') }}</a>
     </div>
@@ -14,10 +14,10 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a href="{{ route('les-offres') }}" class="nav-link">
-            <i class="material-icons">dashboard</i> {{ __('Les offres') }}
+            <!--<i class="material-icons">dashboard</i> {{ __('Les offres') }}
           </a>
         </li>
-        <!-- <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
+         <li class="nav-item{{ $activePage == 'register' ? ' active' : '' }}">
           <a href="{{ route('register') }}" class="nav-link">
             <i class="material-icons">person_add</i> {{ __('Register') }}
           </a>
@@ -38,4 +38,3 @@
   </div>
 </nav>
 <!-- End Navbar -->
-    

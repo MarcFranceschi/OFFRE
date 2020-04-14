@@ -14,7 +14,18 @@ use Mail;
 
 class offreController extends Controller
 {
- 
+ /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+         $this->middleware('permission:offre-list|offre-create|offre-edit|offre-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:offre-create', ['only' => ['create','store']]);
+         $this->middleware('permission:offre-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:offre-delete', ['only' => ['destroy']]);
+    }
     /**
      * Affichage de toutes les offres
      *
@@ -84,11 +95,8 @@ class offreController extends Controller
 
         $mailuserget=DB::table('users')->select('email')->whereNotNull('email')->pluck('email');
         foreach ($mailuserget as $mailuser) {
-            
-           // dd($offre);
             //return view('mail', compact('offre'));
             $data = array('offre'=>$offre_id);
-           // dd($data);
         Mail::send('mail',$data, function ($message) use ($mailuser,$offre){
               $message->to($mailuser)
               ->subject('Nouvelle offre d\'emplois disponible');
@@ -192,5 +200,13 @@ class offreController extends Controller
         $offre->delete();
 
         return redirect()->route('offres.index')->withStatus(__('Offre supprimée avec succès'));
+    }
+    public function deleteAll(Request $request)
+    {
+        $ids = $request->ids;
+        DB::table("offres")->whereIn('id',explode(",",$ids))->delete();
+        return response()->json(['success'=>"Les offres ont été supprimées avec succès."]);
+
+        //return redirect()->route('offres.index')->withStatus(__('Offres supprimées avec succès'));
     }
 }

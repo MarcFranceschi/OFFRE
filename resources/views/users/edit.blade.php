@@ -78,6 +78,16 @@
                 </div>
               </div>
               <!-- -->
+                <!-- Role -->
+                <div class="row">
+                  <label class="col-sm-2 col-form-label" for="input-role">{{ __('Role') }}</label>
+                  <div class="col-sm-7">
+                    <div class="form-group">
+                    {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+                    </div>
+                  </div>
+                </div>
+                  <!-- -->
             </div>
             <div class="card-footer ml-auto mr-auto">
               <button type="submit" class="btn btn-primary">{{ __('Sauvegarder') }}</button>

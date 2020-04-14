@@ -4,7 +4,7 @@
 <div class="container" style="height: auto;">
   <div class="row align-items-center">
     <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
-      <h3>{{ __('Connecter vous pour gérer les offres.') }} </h3>
+      <h3>{{ __('Bienvenue ! Veuillez vous connectez pour accéder aux offres.') }} </h3>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
       <form class="form" method="POST" action="{{ route('login') }}">
@@ -72,14 +72,14 @@
         </div>
       </form>
       <div class="row">
-        <!--<div class="col-6">
+        <div class="col-6">
             @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}" class="text-light">
-                    <small>{{ __('Forgot password?') }}</small>
+                    <small>{{ __('Mot de passe oublié?') }}</small>
                 </a>
             @endif
         </div>
-        <div class="col-6 text-right">
+       <!-- <div class="col-6 text-right">
             <a href="{{ route('register') }}" class="text-light">
                 <small>{{ __('Create new account') }}</small>
             </a>
