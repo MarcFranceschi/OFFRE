@@ -3,6 +3,8 @@
 @section('content')
 <div class="container" style="height: auto;">
   <div class="row align-items-center">
+  <img src="{{URL::asset('uploads/images/14219.svg')}}"  height="200" width="200">
+
     <div class="col-md-9 ml-auto mr-auto mb-3 text-center">
       <h3>{{ __('Bienvenue ! Veuillez vous connectez pour accéder aux offres.') }} </h3>
     </div>
@@ -26,7 +28,7 @@
             </div>-->
           </div>
           <div class="card-body">
-            <p class="card-description text-center">{{ __('Utiliser le mail') }} <strong>testemail@test.com</strong> {{ __(' et le password ') }}<strong>secret</strong> </p>
+            <p class="card-description text-center">{{ __('Utiliser le mail') }} <strong>tplaravel284@gmail.com</strong> {{ __(' et le password ') }}<strong>secret</strong> </p>
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -34,7 +36,7 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="testemail@test.com" required>
+                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="tplaravel284@gmail.com" required>
               </div>
               @if ($errors->has('email'))
                 <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
@@ -67,7 +69,7 @@
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('Lets Go') }}</button>
+            <button type="submit" class="btn btn-primary btn-link btn-lg">{{ __('C\'est parti') }}</button>
           </div>
         </div>
       </form>
@@ -87,5 +89,7 @@
       </div>
     </div>
   </div>
+
+
 </div>
 @endsection

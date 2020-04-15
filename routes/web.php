@@ -15,7 +15,7 @@
 Route::get('/','FrontOffreController@index')->name('home')->middleware('auth');
 
 Route::get('home', function () { 
-	return view('home');
+	return view('profile.edit');
 })->name('home');
 Auth::routes();
 Route::resource('offres', 'offreController')->middleware('auth');

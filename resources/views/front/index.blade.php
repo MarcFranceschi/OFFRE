@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table id="table_id" class="table">
                                 <thead class=" text-primary">
                                     <th>
                                         {{ __('Titre') }}
@@ -52,7 +52,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{ $offre->onEachSide(5)->links() }}
                         </div>
                     </div>
                 </div>

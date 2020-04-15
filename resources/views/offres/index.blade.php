@@ -115,7 +115,6 @@
                     @endforeach
                   </tbody>
                 </table>
-                {{ $offre->onEachSide(5)->links() }}
               </div>
             </div>
           </div>

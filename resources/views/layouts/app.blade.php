@@ -82,10 +82,11 @@
     <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('material') }}/js/material-dashboard.js?v=2.1.1" type="text/javascript"></script>
 
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>-->
+    
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -100,11 +101,10 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#table_id').DataTable({
-
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json"
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/French.json",
             },
-            dom: 'Bfrtip',
+            /*dom: 'Bfrtip',
             buttons: [{
                     extend: 'copy',
                     text: '<i class="fa fa-files-o"></i>',
@@ -127,8 +127,8 @@
                 }
             ],
             colReorder: {
-                realtime: false
-            }
+                realtime: true
+            }*/
         });
     });
 

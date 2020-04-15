@@ -35,7 +35,9 @@ class offreController extends Controller
     public function index()
     {
         $offre = Offre::all();
-        $offre = Offre::paginate(5);
+       // $offre = Offre::paginate(5);
+
+       //Ajouter dans blade {{ $offre->onEachSide(5)->links() }}
 
         return view('offres.index', compact('offre'));
     }
@@ -97,7 +99,7 @@ class offreController extends Controller
         foreach ($mailuserget as $mailuser) {
             //return view('mail', compact('offre'));
             $data = array('offre'=>$offre_id);
-        Mail::send('mail',$data, function ($message) use ($mailuser,$offre){
+        Mail::send('mailnewoffre',$data, function ($message) use ($mailuser,$offre){
               $message->to($mailuser)
               ->subject('Nouvelle offre d\'emplois disponible');
               $message->from('tplaravel284@gmail.com','Careers - Lycée Pasteur Mond Roland');

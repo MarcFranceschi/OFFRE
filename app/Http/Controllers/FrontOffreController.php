@@ -16,7 +16,7 @@ class FrontOffreController extends Controller
     public function index()
     {
         $offre = Offre::all();
-        $offre = Offre::paginate(5);
+        //$offre = Offre::paginate(5);
 
         return view('front.index', compact('offre'));
     }
