@@ -22,8 +22,8 @@ class UsersTableSeeder extends Seeder
             'email' => 'tplaravel284@gmail.com',
             'password' => bcrypt('secret'),
             'created_at' => now(),
-        ]);
-
+            'email_verified_at' => now(),
+            ]);
 
         $role = Role::create(['name' => 'Administrateur']);
 
@@ -39,6 +39,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'pelletier.ft1@gmail.com',
             'password' => bcrypt('secret'),
             'created_at' => now(),
+            'email_verified_at' => now(),
         ]);
     }
 }

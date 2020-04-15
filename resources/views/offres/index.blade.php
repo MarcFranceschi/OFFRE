@@ -57,7 +57,7 @@
                     <th class="text-right">
                       {{ __('Actions') }}
                     </th>
-                    <th width="50px"><input type="checkbox" id="master">
+                    <th width="50px"><input type="checkbox" id="master" >
                     </th>
                     </tr>
                   </thead>
