@@ -9,9 +9,14 @@ use Spatie\Permission\Models\Role;
 use DB;
 use \Validator;
 use Illuminate\Http\Request;
+use Laravel\Passport\HasApiTokens;
+use App\Mail\WelcomeMail;
+use Mail;
 
 class UserController extends Controller
 {
+    use HasApiTokens;
+
     /**
      * Display a listing of the users
      *
@@ -22,7 +27,7 @@ class UserController extends Controller
     {
         //$user = User::paginate(5);
 
-        return view('users.index', ['users' => $model->paginate(5)]);
+        return view('users.index', ['users' => $model->paginate(10)]);
     }
 
     /**
@@ -56,11 +61,19 @@ class UserController extends Controller
         ]);
     
         $input = $request->all();
+        $temp = $input['password'];
         $input['password'] = Hash::make($input['password']);
     
         $user = User::create($input);
         $user->assignRole($request->input('roles'));
-    
+        $role_partenaire = ('Partenaire');
+        //dd($request->input('roles'));
+
+        if (in_array($role_partenaire,$request->input('roles'))){
+        Mail::to($user['email'])->send(new WelcomeMail($user));
+        return redirect()->route('user.index')->withStatus(__('Partenaire créé avec succès. Un mail lui a été envoyé !'));
+        }
+            
         return redirect()->route('user.index')->withStatus(__('Utilisateur créé avec succès.'));
 
          //original :

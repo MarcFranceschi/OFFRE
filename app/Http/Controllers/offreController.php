@@ -60,8 +60,7 @@ class offreController extends Controller
      */
     public function store(Request $request)
     {
-        $offre = new Offre;
-        // On oblige à respecter certains critères avant de valider la requête
+         // On oblige à respecter certains critères avant de valider la requête
         $validator = Validator::make($request->all(), [
             'titre' => 'required|max:255',
             'niveau' => 'required|max:15',
@@ -71,6 +70,7 @@ class offreController extends Controller
         if ($validator->fails()) {
             return back()->withInput()->withErrors($validator->errors());
         }
+        $offre = new Offre;
         // On stock le fichier sélectionné
         $pdf_upload = $request->file('fileUpload');
         // Définition du chemin de stockage

@@ -21,8 +21,7 @@ Route::get('home', function () {
 Route::get('/back', 'offreController@index')->name('back')->middleware('auth');
 Route::get('/nos-offres','FrontOffreController@index')->name('les-offres');
 Route::get('/offre','offreController@offre')->name('front.offre');
-Route::get('mail/send','MailController@html_email')->name('mail.send');
-Route::get('sendattachmentemail','MailController@attachment_email');
+
 
 Route::delete('offres/{id}', 'offreController@destroy');
 Route::delete('offres-deleteselection', 'offreController@deleteAll');

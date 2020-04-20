@@ -57,8 +57,10 @@
                     <th class="text-right">
                       {{ __('Actions') }}
                     </th>
+                    @can('offre-delete')
                     <th width="50px"><input type="checkbox" id="master" >
                     </th>
+                    @endcan
                     </tr>
                   </thead>
                   <tbody>
@@ -108,9 +110,11 @@
                         </form>
                         @endcan
                       </td>
+                      @can('offre-delete')
                       <td>
                         <input type="checkbox" class="sub_chk" data-id="{{$offres->id}}">
                       </td>
+                      @endcan
                     </tr>
                     @endforeach
                   </tbody>
